@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>InkaNiskaPortfolio</title>
+	<link rel="icon" type="image/png" href="assets/favicon.png" />
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background: #f4f4f4;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			image-rendering: pixelated;
+		}
+
+		.page {
+			width: 300px;
+			height: 450px;
+			background: url('assets/kansi.png');
+			background-size: cover;
+			border: 4px solid black;
+			box-shadow: 4px 4px 0 #000;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.character {
+			position: absolute;
+			left: 35px; /* adjust this to move more left/right */
+			top: 80px; /* adjust this to control vertical placement */
+			width: 32px;
+			height: 32px;
+			width: 100px;
+			height: 100px;
+			image-rendering: pixelated;
+			cursor: pointer;
+			transition: top 1s linear;
+		}
+
+		.character.falling {
+			width: 100;
+			height: 100;
+		}
+
+		.character.walkingR {
+			width: 100;
+			height: 100;
+		}
+
+		.character.walkingL {
+			width: 100;
+			height: 100;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="page">
+		<img id="character" src="assets/inkaHello.gif" class="character" onclick="jumpOut()" />
+	</div>
+
+	<script>
+
+		let currentLeft = 35;
+		let walkTimeot;
+
+		function jumpOut() 
+		{
+			const char = document.getElementById('character');
+
+			char.src = 'assets/fall.gif';
+			char.classList.add('falling');
+
+			setTimeout(() => {
+				char.style.top = '370px';
+			}, 10);
+			 // trigger delay
+			setTimeout(() => {
+				char.src = 'assets/inkaHello.gif';
+				char.onclick = null;
+			}, 1050) // set this right
+		}
+
+		document.addEventListener('keydown', (event) =>
+		{
+			const char = document.getElementById('character');
+			if (!char || char.style.top !== '370px') return; //only walks on ground!
+
+			if (event.key === 'ArrowLeft') 
+			{
+				if (currentLeft > 0)
+				{
+					char.src = 'assets/walkL.gif';
+					char.classList.add('walkingL');
+
+					currentLeft -= 10; //step len
+					char.style.left = currentLeft + 'px';
+				}
+			}
+			else if (event.key === 'ArrowRight')
+			{
+				if (currentLeft < 250)
+				{
+					char.src = 'assets/walkR.gif';
+					char.classList.add('walkingR');
+
+					currentLeft += 10;
+					char.style.left = currentLeft + 'px';
+
+					if (currenLeft < 230) {
+						NextPage();
+					}
+				}
+			}
+
+			else
+				return ;
+
+			clearTimeout(walkTimeot);
+			walkTimeot = setTimeout(() => {
+				char.src = 'assets/inkaHello.gif';
+			}, 100)
+
+		})
+
+		function NextPage() 
+		{
+			document.getElementById('page1').style.display = 'none';
+			document.getElementById('page2').style.display = 'block';
+		}
+
+	</script>
+</body>
+</html>
+

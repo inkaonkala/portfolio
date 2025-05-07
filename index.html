@@ -19,20 +19,23 @@
 		.page {
 			width: 300px;
 			height: 450px;
-			background: url('assets/kansi.png');
 			background-size: cover;
+			background-repeat: no-repeat;
 			border: 4px solid black;
 			box-shadow: 4px 4px 0 #000;
 			position: relative;
 			overflow: hidden;
+			display: none;
+		}
+
+		.page.active {
+			display: block;
 		}
 
 		.character {
 			position: absolute;
-			left: 35px; /* adjust this to move more left/right */
-			top: 80px; /* adjust this to control vertical placement */
-			width: 32px;
-			height: 32px;
+			left: 35px;
+			top: 80px;
 			width: 100px;
 			height: 100px;
 			image-rendering: pixelated;
@@ -40,99 +43,152 @@
 			transition: top 1s linear;
 		}
 
-		.character.falling {
-			width: 100;
-			height: 100;
+		/* Terminal-style textbox */
+		#textbox {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			width: 260px;
+			height: 80px;
+			font-family: monospace;
+			font-size: 14px;
+			color: black;
+			background: lightpink;
+			border: 2px solid blueviolet;
+			padding: 10px;
+			white-space: pre-wrap;
+			overflow: hidden;
 		}
 
-		.character.walkingR {
-			width: 100;
-			height: 100;
+		/* Green code box */
+		.code-box {
+			position: absolute;
+			top: 130px;
+			left: 20px;
+			width: 120px;
+			height: 100px;
+			background: #ccffcc;
+			border: 2px solid green;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 
-		.character.walkingL {
-			width: 100;
-			height: 100;
+		/* Blue explanation box */
+		.explain-box {
+			position: absolute;
+			top: 130px;
+			right: 20px;
+			width: 120px;
+			height: 100px;
+			background: #cce5ff;
+			border: 2px solid blue;
+			padding: 8px;
+			font-size: 12px;
+			box-sizing: border-box;
 		}
-
 	</style>
 </head>
 <body>
-	<div class="page">
+
+	<!-- COVER PAGE -->
+	<div id="page1" class="page active" style="background-image: url('assets/kansi.png');">
 		<img id="character" src="assets/inkaHello.gif" class="character" onclick="jumpOut()" />
 	</div>
 
+	<!-- BANANA PAGE -->
+	<div id="page2" class="page" style="background-image: url('assets/testisivu.png');">
+		<div id="textbox"></div>
+
+		<div class="code-box">
+			<img src="assets/bana_pic.png" alt="Code snippet" style="max-width: 100%; max-height: 100%;" />
+		</div>
+
+		<div class="explain-box">
+			This snippet shows the function used to animate the character’s jump. It triggers the falling GIF and then swaps back after a delay.
+		</div>
+	</div>
+
 	<script>
-
 		let currentLeft = 35;
-		let walkTimeot;
+		let walkTimeout;
 
-		function jumpOut() 
-		{
+		function jumpOut() {
 			const char = document.getElementById('character');
-
 			char.src = 'assets/fall.gif';
 			char.classList.add('falling');
 
 			setTimeout(() => {
 				char.style.top = '370px';
 			}, 10);
-			 // trigger delay
+
 			setTimeout(() => {
 				char.src = 'assets/inkaHello.gif';
 				char.onclick = null;
-			}, 1050) // set this right
+			}, 1050);
 		}
 
-		document.addEventListener('keydown', (event) =>
-		{
+		document.addEventListener('keydown', (event) => {
 			const char = document.getElementById('character');
-			if (!char || char.style.top !== '370px') return; //only walks on ground!
+			if (!char || char.style.top !== '370px') return;
 
-			if (event.key === 'ArrowLeft') 
-			{
-				if (currentLeft > 0)
-				{
+			if (event.key === 'ArrowLeft') {
+				if (currentLeft > 0) {
 					char.src = 'assets/walkL.gif';
 					char.classList.add('walkingL');
-
-					currentLeft -= 10; //step len
+					currentLeft -= 10;
 					char.style.left = currentLeft + 'px';
 				}
-			}
-			else if (event.key === 'ArrowRight')
-			{
-				if (currentLeft < 250)
-				{
+			} else if (event.key === 'ArrowRight') {
+				if (currentLeft < 250) {
 					char.src = 'assets/walkR.gif';
 					char.classList.add('walkingR');
-
 					currentLeft += 10;
 					char.style.left = currentLeft + 'px';
 
-					if (currenLeft < 230) {
+					if (currentLeft > 230) {
 						NextPage();
 					}
 				}
-			}
+			} else return;
 
-			else
-				return ;
-
-			clearTimeout(walkTimeot);
-			walkTimeot = setTimeout(() => {
+			clearTimeout(walkTimeout);
+			walkTimeout = setTimeout(() => {
 				char.src = 'assets/inkaHello.gif';
-			}, 100)
+			}, 100);
+		});
 
-		})
-
-		function NextPage() 
-		{
-			document.getElementById('page1').style.display = 'none';
-			document.getElementById('page2').style.display = 'block';
+		function NextPage() {
+			document.getElementById('page1').classList.remove('active');
+			document.getElementById('page2').classList.add('active');
+			startTypingLoop();
 		}
 
+		function typeText(text, elementId, speed = 50, callback = null) {
+			let i = 0;
+			const el = document.getElementById(elementId);
+			el.innerHTML = '';
+			const interval = setInterval(() => {
+				if (i < text.length) {
+					el.innerHTML += text.charAt(i);
+					i++;
+				} else {
+					clearInterval(interval);
+					if (callback) callback();
+				}
+			}, speed);
+		}
+
+		function startTypingLoop() {
+			const message = "Write the whole thing here...\nI think it needs\n to be divided into\npieces.";
+			function loop() {
+				typeText(message, "textbox", 40, () => {
+					setTimeout(loop, 2000);
+				});
+			}
+			loop();
+		}
 	</script>
+
 </body>
 </html>
-

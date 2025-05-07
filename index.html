@@ -66,7 +66,7 @@
 			top: 130px;
 			left: 20px;
 			width: 120px;
-			height: 100px;
+			height: 250px;
 			background: #ccffcc;
 			border: 2px solid green;
 			display: flex;
@@ -80,7 +80,7 @@
 			top: 130px;
 			right: 20px;
 			width: 120px;
-			height: 100px;
+			height: 130px;
 			background: #cce5ff;
 			border: 2px solid blue;
 			padding: 8px;
@@ -105,7 +105,7 @@
 		</div>
 
 		<div class="explain-box">
-			This snippet shows the function used to animate the character’s jump. It triggers the falling GIF and then swaps back after a delay.
+			This is working shell called bananapeel. It can be used as bash. It was written in c as a pair project.
 		</div>
 	</div>
 
@@ -180,10 +180,10 @@
 		}
 
 		function startTypingLoop() {
-			const message = "Write the whole thing here...\nI think it needs\n to be divided into\npieces.";
+			const message = "🍌 banana_peel: echo hello \n hello";
 			function loop() {
 				typeText(message, "textbox", 40, () => {
-					setTimeout(loop, 2000);
+					setTimeout(loop, 20000);
 				});
 			}
 			loop();

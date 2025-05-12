@@ -41,6 +41,7 @@
 			image-rendering: pixelated;
 			cursor: pointer;
 			transition: top 1s linear;
+			pointer-events: auto;
 		}
 
 		.page.double {
@@ -65,7 +66,7 @@
 		.page-bg.right {
 			left: 50%;
 		}
-		/* Terminal-style textbox */
+		/* Terminal-style textbox  FOR BANANA*/
 		#textbox {
 			position: absolute;
 			top: 20px;
@@ -82,7 +83,7 @@
 			overflow: hidden;
 		}
 
-		/* Green code box */
+		/* Green code box for BANANA */
 		.code-box {
 			position: absolute;
 			top: 130px;
@@ -96,7 +97,7 @@
 			justify-content: center;
 		}
 
-		/* Blue explanation box */
+		/* Blue explanation box for BANANA*/
 		.explain-box {
 			position: absolute;
 			top: 130px;
@@ -109,6 +110,46 @@
 			font-size: 12px;
 			box-sizing: border-box;
 		}
+
+		.page-title {
+		font-family: 'Press Start 2P', cursive;
+		font-size: 16px;
+		position: absolute;
+		top: 10px;
+		width: 100%;
+		font-family: monospace;
+		color: black;
+		}
+
+	.left-title {
+		left: 100px;
+	}
+
+
+	.video-box {
+		position: absolute;
+		width: 200px;
+		height: 115px;
+		border: 2px solid black;
+		background: #ff5555;
+		box-sizing: border-box;
+	}
+
+	.video-box iframe {
+		width: 100%;
+		height: 100%;
+	}
+
+	.explain-box.blue {
+		width: 80px;
+		font-size: 11px;
+		line-height: 1.2;
+		padding: 6px;
+		background: #6666cc;
+		border-color: #3333aa;
+		color: white;
+	}
+
 	</style>
 </head>
 <body>
@@ -119,23 +160,55 @@
 	</div>
 
 	<!-- MOVING CHARACTER -->
-	<img id="characterNavi" src="assets/inkaHello.gif" class="character" style="display: none; top: 430px; left: 35px; z-index: 10;" />
-		
+<!---	<img id="characterNavi" src="assets/inkaHello.gif" class="character" style="display: none; top: 430px; left: 35px; z-index: 10;" /> -->
+	<div id="pageContainer" style="position: relative; display: flex; justify-content: center;">
+		<img id="characterNavi" src="assets/inkaHello.gif" class="character" style="display: none; top: 380px; left: 35px; z-index: 10;" />
+	
+	
 	<!-- BANANA PAGE -->
-	<div id="page2" class="page double">
+		<div id="page2" class="page double">
+			<div class="page-bg left"></div>
+			<div class="page-bg right"></div>
+
+			<div id="textbox"></div>
+
+			<div class="code-box">
+				<img src="assets/bana_pic.png" alt="Code snippet" style="max-width: 100%; max-height: 100%;" />
+			</div>
+
+			<div class="explain-box">
+				This is working shell called bananapeel. It can be used as bash. It was written in c as a pair project.
+			</div>
+	</div>
+
+	<!-- GAME1 PAGE -->
+	<div id="game1_page" class="page double">
 		<div class="page-bg left"></div>
 		<div class="page-bg right"></div>
 
-		<div id="textbox"></div>
+		<h1 class="page-title left-title">My First games</h1>
 
-		<div class="code-box">
-			<img src="assets/bana_pic.png" alt="Code snippet" style="max-width: 100%; max-height: 100%;" />
+		<!-- YouTube embeds, FIRST GAMES -->
+		<div class="video-box" style="top: 50px; left: 20px;">
+			<iframe src="https://www.youtube.com/embed/V4_4JGQmx4I" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<div class="video-box" style="top: 260px; left: 100px;">
+			<iframe src="https://www.youtube.com/embed/3HzTUGBscuc" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<div class="video-box" style="top: 20px; left: 310px;">
+			<iframe src="https://www.youtube.com/embed/7KD0ExyEMZU" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<div class="video-box" style="top: 200px; left: 330px;">
+			<iframe src="https://www.youtube.com/embed/0x0W6AY7gCU" frameborder="0" allowfullscreen></iframe>
 		</div>
 
-		<div class="explain-box">
-			This is working shell called bananapeel. It can be used as bash. It was written in c as a pair project.
-		</div>
+		<!-- Blue explanation boxes FIRST GAME PAGE -->
+		<div class="explain-box blue" style="top: 50px; left: 225px;">My first game, made with C. It’s a classic Matopeli (Snake), played in the terminal.</div>
+		<div class="explain-box blue" style="top: 220px; left: 10px;">This was my first C++ game — a simple point-and-click. </div>
+		<div class="explain-box blue" style="top: 60px; left: 520px;">A more complex two-player game. Collect all the balls to save the kitty! Built with C++ and SFML.</div>
+		<div class="explain-box blue" style="top: 310px; left: 500px;">A simple Pong game — built as physics practice. C++</div>
 	</div>
+
 
 
 	<script>
@@ -161,35 +234,6 @@
 			}, 1050);
 		}
 
-		//document.addEventListener('keydown', (event) => {
-		//	const char = document.getElementById('character');
-		//	if (!char || char.style.top !== '370px') return;
-
-		//	if (event.key === 'ArrowLeft') {
-		//		if (currentLeft > 0) {
-		//			char.src = 'assets/walkL.gif';
-		//			char.classList.add('walkingL');
-		//			currentLeft -= 10;
-		//			char.style.left = currentLeft + 'px';
-		//		}
-		//	} else if (event.key === 'ArrowRight') {
-		//		if (currentLeft < 250) {
-		//			char.src = 'assets/walkR.gif';
-		//			char.classList.add('walkingR');
-		//			currentLeft += 10;
-		//			char.style.left = currentLeft + 'px';
-
-		//			if (currentLeft > 230) {
-		//				NextPage();
-		//			}
-		//		}
-		//	} else return;
-
-		//	clearTimeout(walkTimeout);
-		//	walkTimeout = setTimeout(() => {
-		//		char.src = 'assets/inkaHello.gif';
-		//	}, 100);
-		//});
 		document.addEventListener('keydown', (event) => {
 		// --- Character 1: Cover ---
 		if (character && character.style.top === '370px' && character.offsetParent !== null) {
@@ -233,6 +277,9 @@
 					currentLeft += 10;
 					charNavi.style.left = currentLeft + 'px';
 				}
+				if (currentLeft >= maxRight - 10 && document.getElementById('page2').classList.contains('active')) {
+					NextPage();
+				}
 			}
 
 			clearTimeout(walkTimeout);
@@ -242,18 +289,38 @@
 		}
 	});
 
-
-		function NextPage() {
-			document.getElementById('page1').classList.remove('active');
-			document.getElementById('page2').classList.add('active');
-
-			charNavi.style.display = 'block';
-			charNavi.style.left = '35px';
-			currentLeft = 35;
-
-			startTypingLoop();
+		function getActivepageWidth() {
+			const activePage = document.querySelector('.page.active');
+			return activePage ? activePage.offsetWidth : 300;
 		}
 
+		//function NextPage() {
+		//	document.getElementById('page1').classList.remove('active');
+		//	document.getElementById('page2').classList.add('active');
+
+		//	charNavi.style.display = 'block';
+		//	charNavi.style.left = '35px';
+		//	currentLeft = 35;
+
+		//	startTypingLoop();
+		//}
+
+
+		function NextPage() {
+			if (document.getElementById('page1').classList.contains('active')) {
+				document.getElementById('page1').classList.remove('active');
+				document.getElementById('page2').classList.add('active');
+				charNavi.style.display = 'block';
+				charNavi.style.left = '35px';
+				currentLeft = 35;
+				startTypingLoop();
+			} else if (document.getElementById('page2').classList.contains('active')) {
+				document.getElementById('page2').classList.remove('active');
+				document.getElementById('game1_page').classList.add('active');
+				charNavi.style.left = '35px';
+				currentLeft = 35;
+			}
+		}
 		function typeText(text, elementId, speed = 50, callback = null) {
 			let i = 0;
 			const el = document.getElementById(elementId);

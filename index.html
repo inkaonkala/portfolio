@@ -119,7 +119,7 @@
 	</div>
 
 	<!-- MOVING CHARACTER -->
-	<img id="characterNav" src="assets/inkaHello.gif" class="character" style="display: none; top: 370px; left: 35px;" />
+	<img id="characterNavi" src="assets/inkaHello.gif" class="character" style="display: none; top: 430px; left: 35px; z-index: 10;" />
 		
 	<!-- BANANA PAGE -->
 	<div id="page2" class="page double">
@@ -142,7 +142,11 @@
 		let currentLeft = 35;
 		let walkTimeout;
 
-		function jumpOut() {
+		const character = document.getElementById('character');
+		const charNavi = document.getElementById('characterNavi');
+
+		function jumpOut() 
+		{
 			const char = document.getElementById('character');
 			char.src = 'assets/fall.gif';
 			char.classList.add('falling');
@@ -157,39 +161,96 @@
 			}, 1050);
 		}
 
-		document.addEventListener('keydown', (event) => {
-			const char = document.getElementById('character');
-			if (!char || char.style.top !== '370px') return;
+		//document.addEventListener('keydown', (event) => {
+		//	const char = document.getElementById('character');
+		//	if (!char || char.style.top !== '370px') return;
 
+		//	if (event.key === 'ArrowLeft') {
+		//		if (currentLeft > 0) {
+		//			char.src = 'assets/walkL.gif';
+		//			char.classList.add('walkingL');
+		//			currentLeft -= 10;
+		//			char.style.left = currentLeft + 'px';
+		//		}
+		//	} else if (event.key === 'ArrowRight') {
+		//		if (currentLeft < 250) {
+		//			char.src = 'assets/walkR.gif';
+		//			char.classList.add('walkingR');
+		//			currentLeft += 10;
+		//			char.style.left = currentLeft + 'px';
+
+		//			if (currentLeft > 230) {
+		//				NextPage();
+		//			}
+		//		}
+		//	} else return;
+
+		//	clearTimeout(walkTimeout);
+		//	walkTimeout = setTimeout(() => {
+		//		char.src = 'assets/inkaHello.gif';
+		//	}, 100);
+		//});
+		document.addEventListener('keydown', (event) => {
+		// --- Character 1: Cover ---
+		if (character && character.style.top === '370px' && character.offsetParent !== null) {
 			if (event.key === 'ArrowLeft') {
 				if (currentLeft > 0) {
-					char.src = 'assets/walkL.gif';
-					char.classList.add('walkingL');
+					character.src = 'assets/walkL.gif';
 					currentLeft -= 10;
-					char.style.left = currentLeft + 'px';
+					character.style.left = currentLeft + 'px';
 				}
 			} else if (event.key === 'ArrowRight') {
 				if (currentLeft < 250) {
-					char.src = 'assets/walkR.gif';
-					char.classList.add('walkingR');
+					character.src = 'assets/walkR.gif';
 					currentLeft += 10;
-					char.style.left = currentLeft + 'px';
+					character.style.left = currentLeft + 'px';
 
 					if (currentLeft > 230) {
 						NextPage();
 					}
 				}
-			} else return;
+			}
 
 			clearTimeout(walkTimeout);
 			walkTimeout = setTimeout(() => {
-				char.src = 'assets/inkaHello.gif';
+				character.src = 'assets/inkaHello.gif';
 			}, 100);
-		});
+		}
+
+		// --- Character 2: Navi ---
+		if (charNavi && charNavi.style.display === 'block') {
+			const maxRight = 600 - 100; // page width minus character width
+
+			if (event.key === 'ArrowLeft') {
+				if (currentLeft > 0) {
+					charNavi.src = 'assets/walkL.gif';
+					currentLeft -= 10;
+					charNavi.style.left = currentLeft + 'px';
+				}
+			} else if (event.key === 'ArrowRight') {
+				if (currentLeft < maxRight) {
+					charNavi.src = 'assets/walkR.gif';
+					currentLeft += 10;
+					charNavi.style.left = currentLeft + 'px';
+				}
+			}
+
+			clearTimeout(walkTimeout);
+			walkTimeout = setTimeout(() => {
+				charNavi.src = 'assets/inkaHello.gif';
+			}, 100);
+		}
+	});
+
 
 		function NextPage() {
 			document.getElementById('page1').classList.remove('active');
 			document.getElementById('page2').classList.add('active');
+
+			charNavi.style.display = 'block';
+			charNavi.style.left = '35px';
+			currentLeft = 35;
+
 			startTypingLoop();
 		}
 

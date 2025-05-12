@@ -43,6 +43,28 @@
 			transition: top 1s linear;
 		}
 
+		.page.double {
+			width: 600px;
+		}
+
+		.page.double .page-bg {
+			width: 50%;
+			height: 100%;
+			background-image: url('assets/testisivu.png');
+			background-size: cover;
+			background-repeat: no-repeat;
+			position: absolute;
+			top: 0;
+			z-index: 0;
+		}
+
+		.page-bg.left {
+			left: 0;
+		}	
+
+		.page-bg.right {
+			left: 50%;
+		}
 		/* Terminal-style textbox */
 		#textbox {
 			position: absolute;
@@ -96,8 +118,14 @@
 		<img id="character" src="assets/inkaHello.gif" class="character" onclick="jumpOut()" />
 	</div>
 
+	<!-- MOVING CHARACTER -->
+	<img id="characterNav" src="assets/inkaHello.gif" class="character" style="display: none; top: 370px; left: 35px;" />
+		
 	<!-- BANANA PAGE -->
-	<div id="page2" class="page" style="background-image: url('assets/testisivu.png');">
+	<div id="page2" class="page double">
+		<div class="page-bg left"></div>
+		<div class="page-bg right"></div>
+
 		<div id="textbox"></div>
 
 		<div class="code-box">
@@ -108,6 +136,7 @@
 			This is working shell called bananapeel. It can be used as bash. It was written in c as a pair project.
 		</div>
 	</div>
+
 
 	<script>
 		let currentLeft = 35;

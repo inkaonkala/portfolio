@@ -80,6 +80,7 @@
 			box-sizing: border-box;
 		}
 
+		/*BANANANA*/
 		.code-box {
 			position: absolute;
 			top: 180px;
@@ -96,8 +97,8 @@
 
 		.explain-box {
 			position: absolute;
-			top: 180px;
-			right: 30px;
+			top: 150px;
+			left: 130px;
 			width: 170px;
 			height: 160px;
 			background: #cce5ff;
@@ -107,6 +108,8 @@
 			box-sizing: border-box;
 		}
 
+
+		/*GAME_PAGES*/
 		.page-title {
 			font-family: monospace;
 			font-size: 18px;
@@ -153,7 +156,7 @@
 	<!-- MOVING CHARACTER -->
 <!---	<img id="characterNavi" src="assets/inkaHello.gif" class="character" style="display: none; top: 430px; left: 35px; z-index: 10;" /> -->
 	<div id="pageContainer" style="position: relative; display: flex; justify-content: center;">
-		<img id="characterNavi" src="assets/inkaHello.gif" class="character" style="display: none; top: 380px; left: 35px; z-index: 10;" />
+		<img id="characterNavi" src="assets/inkaHello.gif" class="character" style="display: none; top: 565px; left: 35px; z-index: 10;" />
 	
 	
 	<!-- BANANA PAGE -->
@@ -168,7 +171,7 @@
 			</div>
 
 			<div class="explain-box">
-				This is working shell called bananapeel. It can be used as bash. It was written in c as a pair project.
+				This is our self made working shell called <br> 🍌banana_peel. <br><br> It can be used as bash. <br>It was written in c as a pair project.
 			</div>
 	</div>
 
@@ -180,24 +183,25 @@
 		<h1 class="page-title left-title">My First games</h1>
 
 		<!-- YouTube embeds, FIRST GAMES -->
-		<div class="video-box" style="top: 50px; left: 20px;">
+		<div class="video-box" style="top: 60px; left: 40px;">
 			<iframe src="https://www.youtube.com/embed/V4_4JGQmx4I" frameborder="0" allowfullscreen></iframe>
 		</div>
-		<div class="video-box" style="top: 260px; left: 100px;">
+		<div class="video-box" style="top: 280px; left: 100px;">
 			<iframe src="https://www.youtube.com/embed/3HzTUGBscuc" frameborder="0" allowfullscreen></iframe>
 		</div>
-		<div class="video-box" style="top: 20px; left: 310px;">
+		<div class="video-box" style="top: 60px; left: 480px;">
 			<iframe src="https://www.youtube.com/embed/7KD0ExyEMZU" frameborder="0" allowfullscreen></iframe>
 		</div>
-		<div class="video-box" style="top: 200px; left: 330px;">
+		<div class="video-box" style="top: 280px; left: 540px;">
 			<iframe src="https://www.youtube.com/embed/0x0W6AY7gCU" frameborder="0" allowfullscreen></iframe>
 		</div>
+		
 
 		<!-- Blue explanation boxes FIRST GAME PAGE -->
-		<div class="explain-box blue" style="top: 50px; left: 225px;">My first game, made with C. It’s a classic Matopeli (Snake), played in the terminal.</div>
-		<div class="explain-box blue" style="top: 220px; left: 10px;">This was my first C++ game — a simple point-and-click. </div>
-		<div class="explain-box blue" style="top: 60px; left: 520px;">A more complex two-player game. Collect all the balls to save the kitty! Built with C++ and SFML.</div>
-		<div class="explain-box blue" style="top: 310px; left: 500px;">A simple Pong game — built as physics practice. C++</div>
+		<div class="explain-box blue" style="top: 60px; left: 330px;">My first game, made with C. A classic Snake game in the terminal.</div>
+		<div class="explain-box blue" style="top: 280px; left: 10px;">My first C++ game — a simple point-and-click.</div>
+		<div class="explain-box blue" style="top: 60px; left: 770px;">Two-player game with balls and a kitty! Built with SFML.</div>
+		<div class="explain-box blue" style="top: 300px; left: 750px;">Simple Pong with physics — C++.</div>
 	</div>
 
 
@@ -218,7 +222,7 @@
 			character.classList.add('falling');
 	
 			setTimeout(() => {
-				character.style.top = '370px';
+				character.style.top = '555px';
 			}, 10);
 	
 			setTimeout(() => {
@@ -230,7 +234,7 @@
 		document.addEventListener('keydown', (event) => {
 			// JUMP (spacebar)
 			if (event.key === ' ') {
-				const activeChar = (character.style.top === '370px') ? character : charNavi;
+				const activeChar = (character.style.top === '555px') ? character : charNavi;
 				activeChar.src = 'assets/fall.gif';
 				setTimeout(() => {
 					activeChar.src = 'assets/inkaHello.gif';
@@ -238,7 +242,7 @@
 			}
 	
 			// --- Character 1: Cover ---
-			if (character && character.style.top === '370px' && character.offsetParent !== null) {
+			if (character && character.style.top === '555px' && character.offsetParent !== null) {
 				if (event.key === 'ArrowLeft') {
 					if (currentLeft > 0) {
 						character.src = 'assets/walkL.gif';
@@ -246,12 +250,12 @@
 						character.style.left = currentLeft + 'px';
 					}
 				} else if (event.key === 'ArrowRight') {
-					if (currentLeft < 250) {
+					if (currentLeft < 300) {
 						character.src = 'assets/walkR.gif';
 						currentLeft += 10;
 						character.style.left = currentLeft + 'px';
 	
-						if (currentLeft > 230) {
+						if (currentLeft > 280) {
 							pageIndex = 1;
 							NextPage();
 						}

@@ -17,12 +17,12 @@
 		}
 
 		.page {
-			width: 300px;
-			height: 450px;
+			width: 450px;
+			height: 675px;
 			background-size: cover;
 			background-repeat: no-repeat;
-			border: 4px solid black;
-			box-shadow: 4px 4px 0 #000;
+			border: 5px solid black;
+			box-shadow: 6px 6px 0 #000;
 			position: relative;
 			overflow: hidden;
 			display: none;
@@ -32,20 +32,21 @@
 			display: block;
 		}
 
-		.character {
-			position: absolute;
-			left: 35px;
-			top: 80px;
-			width: 100px;
-			height: 100px;
-			image-rendering: pixelated;
-			cursor: pointer;
-			transition: top 1s linear;
-			pointer-events: auto;
+		.page.double {
+			width: 900px;
 		}
 
-		.page.double {
-			width: 600px;
+		.character {
+			position: absolute;
+			left: 50px;
+			top: 120px;
+			width: 150px;
+			height: 150px;
+			image-rendering: pixelated;
+			cursor: pointer;
+			transition: top 0.6s linear;
+			pointer-events: auto;
+			z-index: 10;
 		}
 
 		.page.double .page-bg {
@@ -59,96 +60,86 @@
 			z-index: 0;
 		}
 
-		.page-bg.left {
-			left: 0;
-		}	
+		.page-bg.left { left: 0; }
+		.page-bg.right { left: 50%; }
 
-		.page-bg.right {
-			left: 50%;
-		}
-		/* Terminal-style textbox  FOR BANANA*/
 		#textbox {
 			position: absolute;
-			top: 20px;
-			left: 20px;
-			width: 260px;
-			height: 80px;
+			top: 30px;
+			left: 30px;
+			width: 380px;
+			height: 110px;
 			font-family: monospace;
-			font-size: 14px;
+			font-size: 16px;
 			color: black;
 			background: lightpink;
-			border: 2px solid blueviolet;
-			padding: 10px;
+			border: 3px solid blueviolet;
+			padding: 12px;
 			white-space: pre-wrap;
 			overflow: hidden;
+			box-sizing: border-box;
 		}
 
-		/* Green code box for BANANA */
 		.code-box {
 			position: absolute;
-			top: 130px;
-			left: 20px;
-			width: 120px;
-			height: 250px;
+			top: 180px;
+			left: 30px;
+			width: 170px;
+			height: 350px;
 			background: #ccffcc;
-			border: 2px solid green;
+			border: 3px solid green;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			box-sizing: border-box;
 		}
 
-		/* Blue explanation box for BANANA*/
 		.explain-box {
 			position: absolute;
-			top: 130px;
-			right: 20px;
-			width: 120px;
-			height: 130px;
+			top: 180px;
+			right: 30px;
+			width: 170px;
+			height: 160px;
 			background: #cce5ff;
-			border: 2px solid blue;
-			padding: 8px;
-			font-size: 12px;
+			border: 3px solid blue;
+			padding: 10px;
+			font-size: 14px;
 			box-sizing: border-box;
 		}
 
 		.page-title {
-		font-family: 'Press Start 2P', cursive;
-		font-size: 16px;
-		position: absolute;
-		top: 10px;
-		width: 100%;
-		font-family: monospace;
-		color: black;
+			font-family: monospace;
+			font-size: 18px;
+			position: absolute;
+			top: 20px;
+			width: 100%;
+			text-align: center;
+			color: black;
 		}
 
-	.left-title {
-		left: 100px;
-	}
+		.video-box {
+			position: absolute;
+			width: 300px;
+			height: 170px;
+			border: 3px solid black;
+			background: #ff5555;
+			box-sizing: border-box;
+		}
 
+		.video-box iframe {
+			width: 100%;
+			height: 100%;
+		}
 
-	.video-box {
-		position: absolute;
-		width: 200px;
-		height: 115px;
-		border: 2px solid black;
-		background: #ff5555;
-		box-sizing: border-box;
-	}
-
-	.video-box iframe {
-		width: 100%;
-		height: 100%;
-	}
-
-	.explain-box.blue {
-		width: 80px;
-		font-size: 11px;
-		line-height: 1.2;
-		padding: 6px;
-		background: #6666cc;
-		border-color: #3333aa;
-		color: white;
-	}
+		.explain-box.blue {
+			width: 80px;
+			font-size: 11px;
+			line-height: 1.2;
+			padding: 6px;
+			background: #6666cc;
+			border-color: #3333aa;
+			color: white;
+		}
 
 	</style>
 </head>
@@ -211,116 +202,129 @@
 
 
 
+
 	<script>
 		let currentLeft = 35;
 		let walkTimeout;
-
+	
+		const pages = ['page1', 'page2', 'game1_page', 'game2_page', 'game3_page', 'game4_page', 'backCover'];
+		let pageIndex = 0;
+	
 		const character = document.getElementById('character');
 		const charNavi = document.getElementById('characterNavi');
-
-		function jumpOut() 
-		{
-			const char = document.getElementById('character');
-			char.src = 'assets/fall.gif';
-			char.classList.add('falling');
-
+	
+		function jumpOut() {
+			character.src = 'assets/fall.gif';
+			character.classList.add('falling');
+	
 			setTimeout(() => {
-				char.style.top = '370px';
+				character.style.top = '370px';
 			}, 10);
-
+	
 			setTimeout(() => {
-				char.src = 'assets/inkaHello.gif';
-				char.onclick = null;
+				character.src = 'assets/inkaHello.gif';
+				character.onclick = null;
 			}, 1050);
 		}
-
+	
 		document.addEventListener('keydown', (event) => {
-		// --- Character 1: Cover ---
-		if (character && character.style.top === '370px' && character.offsetParent !== null) {
-			if (event.key === 'ArrowLeft') {
-				if (currentLeft > 0) {
-					character.src = 'assets/walkL.gif';
-					currentLeft -= 10;
-					character.style.left = currentLeft + 'px';
-				}
-			} else if (event.key === 'ArrowRight') {
-				if (currentLeft < 250) {
-					character.src = 'assets/walkR.gif';
-					currentLeft += 10;
-					character.style.left = currentLeft + 'px';
-
-					if (currentLeft > 230) {
-						NextPage();
+			// JUMP (spacebar)
+			if (event.key === ' ') {
+				const activeChar = (character.style.top === '370px') ? character : charNavi;
+				activeChar.src = 'assets/fall.gif';
+				setTimeout(() => {
+					activeChar.src = 'assets/inkaHello.gif';
+				}, 500);
+			}
+	
+			// --- Character 1: Cover ---
+			if (character && character.style.top === '370px' && character.offsetParent !== null) {
+				if (event.key === 'ArrowLeft') {
+					if (currentLeft > 0) {
+						character.src = 'assets/walkL.gif';
+						currentLeft -= 10;
+						character.style.left = currentLeft + 'px';
+					}
+				} else if (event.key === 'ArrowRight') {
+					if (currentLeft < 250) {
+						character.src = 'assets/walkR.gif';
+						currentLeft += 10;
+						character.style.left = currentLeft + 'px';
+	
+						if (currentLeft > 230) {
+							pageIndex = 1;
+							NextPage();
+						}
 					}
 				}
+				clearTimeout(walkTimeout);
+				walkTimeout = setTimeout(() => {
+					character.src = 'assets/inkaHello.gif';
+				}, 100);
 			}
-
-			clearTimeout(walkTimeout);
-			walkTimeout = setTimeout(() => {
-				character.src = 'assets/inkaHello.gif';
-			}, 100);
-		}
-
-		// --- Character 2: Navi ---
-		if (charNavi && charNavi.style.display === 'block') {
-			const maxRight = 600 - 100; // page width minus character width
-
-			if (event.key === 'ArrowLeft') {
-				if (currentLeft > 0) {
-					charNavi.src = 'assets/walkL.gif';
-					currentLeft -= 10;
-					charNavi.style.left = currentLeft + 'px';
+	
+			// --- Character 2: Navi ---
+			if (charNavi && charNavi.style.display === 'block') {
+				const maxRight = getActivepageWidth() - 100;
+	
+				if (event.key === 'ArrowLeft') {
+					if (currentLeft > 0) {
+						charNavi.src = 'assets/walkL.gif';
+						currentLeft -= 10;
+						charNavi.style.left = currentLeft + 'px';
+					}
+					if (currentLeft < 20 && pageIndex > 1) {
+						pageIndex--;
+						PrevPage();
+					}
+				} else if (event.key === 'ArrowRight') {
+					if (currentLeft < maxRight) {
+						charNavi.src = 'assets/walkR.gif';
+						currentLeft += 10;
+						charNavi.style.left = currentLeft + 'px';
+	
+						if (currentLeft >= maxRight - 10 && pageIndex < pages.length - 1) {
+							pageIndex++;
+							NextPage();
+						}
+					}
 				}
-			} else if (event.key === 'ArrowRight') {
-				if (currentLeft < maxRight) {
-					charNavi.src = 'assets/walkR.gif';
-					currentLeft += 10;
-					charNavi.style.left = currentLeft + 'px';
-				}
-				if (currentLeft >= maxRight - 10 && document.getElementById('page2').classList.contains('active')) {
-					NextPage();
-				}
+				clearTimeout(walkTimeout);
+				walkTimeout = setTimeout(() => {
+					charNavi.src = 'assets/inkaHello.gif';
+				}, 100);
 			}
-
-			clearTimeout(walkTimeout);
-			walkTimeout = setTimeout(() => {
-				charNavi.src = 'assets/inkaHello.gif';
-			}, 100);
-		}
-	});
-
+		});
+	
 		function getActivepageWidth() {
 			const activePage = document.querySelector('.page.active');
 			return activePage ? activePage.offsetWidth : 300;
 		}
-
-		//function NextPage() {
-		//	document.getElementById('page1').classList.remove('active');
-		//	document.getElementById('page2').classList.add('active');
-
-		//	charNavi.style.display = 'block';
-		//	charNavi.style.left = '35px';
-		//	currentLeft = 35;
-
-		//	startTypingLoop();
-		//}
-
-
-		function NextPage() {
-			if (document.getElementById('page1').classList.contains('active')) {
-				document.getElementById('page1').classList.remove('active');
-				document.getElementById('page2').classList.add('active');
-				charNavi.style.display = 'block';
-				charNavi.style.left = '35px';
-				currentLeft = 35;
-				startTypingLoop();
-			} else if (document.getElementById('page2').classList.contains('active')) {
-				document.getElementById('page2').classList.remove('active');
-				document.getElementById('game1_page').classList.add('active');
-				charNavi.style.left = '35px';
-				currentLeft = 35;
-			}
+	
+		function showPage(index) 
+		{
+			document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+			const next = document.getElementById(pages[index]);
+			next.classList.add('active');
 		}
+	
+		function NextPage() 
+		{
+			showPage(pageIndex);
+			charNavi.style.display = 'block';
+			charNavi.style.left = '35px';
+			currentLeft = 35;
+			if (pages[pageIndex] === 'page2') startTypingLoop();
+		}
+	
+		function PrevPage() 
+		{
+			showPage(pageIndex);
+			charNavi.style.left = '35px';
+			currentLeft = 35;
+			if (pages[pageIndex] === 'page2') startTypingLoop();
+		}
+	
 		function typeText(text, elementId, speed = 50, callback = null) {
 			let i = 0;
 			const el = document.getElementById(elementId);
@@ -335,12 +339,19 @@
 				}
 			}, speed);
 		}
-
+	
 		function startTypingLoop() {
-			const message = "🍌 banana_peel: echo hello \n hello";
+			const messages = [
+				"🍌 banana_peel: ls -la | grep .c | sort",
+				"🍌 banana_peel: ./banana < input.txt > out.txt",
+				"🍌 banana_peel: echo \"banana magic\" | sed 's/a/@/g'"
+			];
+			let index = 0;
+	
 			function loop() {
-				typeText(message, "textbox", 40, () => {
-					setTimeout(loop, 20000);
+				typeText(messages[index], "textbox", 40, () => {
+					index = (index + 1) % messages.length;
+					setTimeout(loop, 4000);
 				});
 			}
 			loop();

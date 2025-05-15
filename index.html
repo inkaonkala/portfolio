@@ -112,7 +112,7 @@
 		/*GAME_PAGES*/
 		.page-title {
 			font-family: monospace;
-			font-size: 18px;
+			font-size: 24px;
 			position: absolute;
 			top: 20px;
 			width: 100%;
@@ -164,6 +164,8 @@
 			<div class="page-bg left"></div>
 			<div class="page-bg right"></div>
 
+			<h1 class="page-title" style="left: 200px">Some C projects made in Hive</h1>
+
 			<div id="textbox"></div>
 
 			<div class="code-box">
@@ -172,6 +174,28 @@
 
 			<div class="explain-box">
 				This is our self made working shell called <br> 🍌banana_peel. <br><br> It can be used as bash. <br>It was written in c as a pair project.
+			</div>
+
+			<div class="explain-box" style="top: 80px; left: 650px; height: 470px;">
+				My own library functions:<br><br>ft_printf get_next_line<br>
+				ft_atoi ft_bzero<br>ft_form ft_calloc<br>
+				ft_isalnum ft_isalpha<br>ft_isascii ft_isdigit<br>
+				ft_isprint ft_itoa<br>ft_memchr ft_memcmp<br>
+				ft_memcpy ft_memmove<br>ft_memset ft_putchar<br>
+				ft_putendl ft_putnbr<br>ft_putstr ft_split<br>
+				ft_strchr ft_strdup<br>ft_striteri ft_strjoin<br>
+				ft_strlcat ft_strlcpy<br>ft_strlen ft_strmapi<br>
+				ft_strncmp ft_strnstr<br>ft_strrchr ft_strtrim<br>
+				ft_substr ft_tolower<br>ft_toupper ft_lstadd_back<br>
+				ft_lstadd_front ft_lstclear<br>ft_lstiter ft_lstlast<br>
+				ft_lstmap ft_lstnew
+			</div>
+
+			<div class="explain-box blue" style="top: 300px; left: 350px; width: 200px; height: 160px; font-size: 13px; line-height: 1.2;">
+				Cube3D<br><br>
+				A Wolfenstein3D-inspired horror game in 3D,<br>
+				built using raycasting. <br><br>
+				I also made all the graphics!
 			</div>
 	</div>
 
@@ -186,23 +210,80 @@
 		<div class="video-box" style="top: 60px; left: 40px;">
 			<iframe src="https://www.youtube.com/embed/V4_4JGQmx4I" frameborder="0" allowfullscreen></iframe>
 		</div>
-		<div class="video-box" style="top: 280px; left: 100px;">
+		<div class="video-box" style="top: 285px; left: 100px;">
 			<iframe src="https://www.youtube.com/embed/3HzTUGBscuc" frameborder="0" allowfullscreen></iframe>
 		</div>
-		<div class="video-box" style="top: 60px; left: 480px;">
-			<iframe src="https://www.youtube.com/embed/7KD0ExyEMZU" frameborder="0" allowfullscreen></iframe>
-		</div>
-		<div class="video-box" style="top: 280px; left: 540px;">
+		<div class="video-box" style="top: 100px; left: 480px;">
 			<iframe src="https://www.youtube.com/embed/0x0W6AY7gCU" frameborder="0" allowfullscreen></iframe>
 		</div>
+		<div class="video-box" style="top: 340px; left: 440px;">
+			<iframe src="https://www.youtube.com/embed/7KD0ExyEMZU" frameborder="0" allowfullscreen></iframe>
+		</div>
 		
-
 		<!-- Blue explanation boxes FIRST GAME PAGE -->
-		<div class="explain-box blue" style="top: 60px; left: 330px;">My first game, made with C. A classic Snake game in the terminal.</div>
-		<div class="explain-box blue" style="top: 280px; left: 10px;">My first C++ game — a simple point-and-click.</div>
-		<div class="explain-box blue" style="top: 60px; left: 770px;">Two-player game with balls and a kitty! Built with SFML.</div>
-		<div class="explain-box blue" style="top: 300px; left: 750px;">Simple Pong with physics — C++.</div>
+		<div class="explain-box blue" style="top: 80px; left: 360px;">My first game, made with C. A classic Snake game in the terminal.</div>
+		<div class="explain-box blue" style="top: 305px; left: 10px;">My first C++ game — a super simple point-and-click.</div>
+		<div class="explain-box blue" style="top: 105px; left: 790px;">Classic Pong for physics practise — C++.</div>
+		<div class="explain-box blue" style="top: 325px; left: 760px;">Two-player puzzle game. Collect the balls to save the kitty! Built with SFML.</div>
 	</div>
+
+	<!-- GAME2 PAGE -->
+	<div id="game2_page" class="page double">
+		<div class="page-bg left"></div>
+		<div class="page-bg right"></div>
+
+		<h1 class="page-title">Game Jams</h1>
+
+		<div class="video-box" style="top: 80px; left: 40px; width: 400px; height: 225px;;">
+			<iframe src="https://www.youtube.com/embed/CPJavXipCRI" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<div class="video-box" style="top: 80px; left: 460px; width: 400px; height: 225px;">
+			<iframe src="https://www.youtube.com/embed/B5LouW-9cAA" frameborder="0" allowfullscreen></iframe>
+		</div>
+
+		<div class="explain-box blue" style="top: 350px; left: 40px; width: 400px; height: 150px; font-size: 13px; line-height: 1.3;">
+			The theme for this gamejam was TimeLoop.<br>
+			So I wanted to create this jumping mechanic where the player "stops the time" on the air. 
+			The next jump is calculated from the time spend in the air. The game is pretty hard and really fun!
+		</div>
+		<div class="explain-box blue" style="top: 350px; left: 460px; width: 400px; height: 150px; font-size: 13px; line-height: 1.3;">
+			The theme of this jam was World Worth Saving.<br> This game is two player shooter-collector game with growing planet mechanics.<br>
+			I really wanted to challenge myself and make a full game with story and ending.<br>
+			Other player plays the collector and other shooter. 
+			Everytime the collector returns to the planet, the roles switch. 
+		</div>
+	</div>
+
+	<!-- GAME3 PAGE aka TRANCEND-->
+
+	<div id="game3_page" class="page double">
+		<div class="page-bg left"></div>
+		<div class="page-bg right"></div>
+
+		<h1 class="page-title">Let's play some pong!</h1>
+		
+		<div class="video-box" style="top: 80px; left: 40px; width: 800px; height: 450px;;">
+			<iframe src="https://www.youtube.com/embed/FOc7VPFmJJY" frameborder="0" allowfullscreen></iframe>
+		</div>
+
+		<div class="explain-box blue" style="top: 510px; left: 80px; width: 640px; height: 160px; font-size: 14px; line-height: 1.3;">
+			This project was built as a group effort to create a feature-rich web app where users can play pong together. <br>
+			My part was designing and coding this full Pong game using JavaScript and HTML5 canvas,<br> 
+			with extra features like tournament mode, forgatten item mechanic, and duel rounds.<br>
+			We used React, TypeScript, Tailwind CSS, Fastify (Node.js), and SQLite for the full stack.<br> 
+			The project also included backend integration, user matchmaking, and real-time updates.
+
+		</div>
+
+		
+	</div>
+
+	<!-- BACK COVER-->
+	<div id="backCover" class="page" style="background-image: url('assets/back.png');">
+		<img src="assets/spaceman.gif" alt="Sticker" style="position: absolute; top: 60px; left: 250px; width: 100px;" />
+		<img id="laptop" src="assets/laptop.png" alt="Laptop" style="position: absolute; top: 500px; left: 300px; width: 150px;" />
+	</div>
+
 
 
 
@@ -211,7 +292,7 @@
 		let currentLeft = 35;
 		let walkTimeout;
 	
-		const pages = ['page1', 'page2', 'game1_page', 'game2_page', 'game3_page', 'game4_page', 'backCover'];
+		const pages = ['page1', 'page2', 'game1_page', 'game2_page', 'game3_page', 'backCover'];
 		let pageIndex = 0;
 	
 		const character = document.getElementById('character');
@@ -246,13 +327,13 @@
 				if (event.key === 'ArrowLeft') {
 					if (currentLeft > 0) {
 						character.src = 'assets/walkL.gif';
-						currentLeft -= 10;
+						currentLeft -= 20;
 						character.style.left = currentLeft + 'px';
 					}
 				} else if (event.key === 'ArrowRight') {
 					if (currentLeft < 300) {
 						character.src = 'assets/walkR.gif';
-						currentLeft += 10;
+						currentLeft += 20;
 						character.style.left = currentLeft + 'px';
 	
 						if (currentLeft > 280) {
@@ -274,7 +355,7 @@
 				if (event.key === 'ArrowLeft') {
 					if (currentLeft > 0) {
 						charNavi.src = 'assets/walkL.gif';
-						currentLeft -= 10;
+						currentLeft -= 20;
 						charNavi.style.left = currentLeft + 'px';
 					}
 					if (currentLeft < 20 && pageIndex > 1) {
@@ -282,11 +363,18 @@
 						PrevPage();
 					}
 				} else if (event.key === 'ArrowRight') {
-					if (currentLeft < maxRight) {
+					if (currentLeft < maxRight) 
+					{
 						charNavi.src = 'assets/walkR.gif';
-						currentLeft += 10;
+						currentLeft += 20;
 						charNavi.style.left = currentLeft + 'px';
-	
+
+						if (pages[pageIndex] === 'backCover' && currentLeft >= 300) 
+						{
+							charNavi.style.left = '300px';
+							currentLeft = 300;
+							return;
+						}
 						if (currentLeft >= maxRight - 10 && pageIndex < pages.length - 1) {
 							pageIndex++;
 							NextPage();
@@ -324,8 +412,9 @@
 		function PrevPage() 
 		{
 			showPage(pageIndex);
-			charNavi.style.left = '35px';
-			currentLeft = 35;
+			const pageWidth = getActivepageWidth();
+			currentLeft = pageWidth - 100;
+			charNavi.style.left = currentLeft +'px';
 			if (pages[pageIndex] === 'page2') startTypingLoop();
 		}
 	
@@ -346,9 +435,9 @@
 	
 		function startTypingLoop() {
 			const messages = [
-				"🍌 banana_peel: ls -la | grep .c | sort",
-				"🍌 banana_peel: ./banana < input.txt > out.txt",
-				"🍌 banana_peel: echo \"banana magic\" | sed 's/a/@/g'"
+				"🍌banana_peel: echo Hello \n \n Hello",
+				"🍌banana_peel: pwd >> file.txt | cat file.txt \n \n your.txt folders.html and files.out ",
+				"🍌banana_peel: << DOG \n here_dog> I like \n here_dog> cats \n here_dog> CAT"
 			];
 			let index = 0;
 	

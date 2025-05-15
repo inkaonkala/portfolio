@@ -136,7 +136,7 @@
 
 		.explain-box.blue {
 			width: 80px;
-			font-size: 11px;
+			font-size: 12px;
 			line-height: 1.2;
 			padding: 6px;
 			background: #6666cc;
@@ -345,13 +345,13 @@
 				if (event.key === 'ArrowLeft') {
 					if (currentLeft > 0) {
 						character.src = 'assets/walkL.gif';
-						currentLeft -= 20;
+						currentLeft -= 15;
 						character.style.left = currentLeft + 'px';
 					}
 				} else if (event.key === 'ArrowRight') {
 					if (currentLeft < 300) {
 						character.src = 'assets/walkR.gif';
-						currentLeft += 20;
+						currentLeft += 15;
 						character.style.left = currentLeft + 'px';
 	
 						if (currentLeft > 280) {
@@ -373,10 +373,10 @@
 				if (event.key === 'ArrowLeft') {
 					if (currentLeft > 0) {
 						charNavi.src = 'assets/walkL.gif';
-						currentLeft -= 20;
+						currentLeft -= 15;
 						charNavi.style.left = currentLeft + 'px';
 					}
-					if (currentLeft < 20 && pageIndex > 1) {
+					if (currentLeft < 15 && pageIndex > 1) {
 						pageIndex--;
 						PrevPage();
 					}
@@ -384,7 +384,7 @@
 					if (currentLeft < maxRight) 
 					{
 						charNavi.src = 'assets/walkR.gif';
-						currentLeft += 20;
+						currentLeft += 15;
 						charNavi.style.left = currentLeft + 'px';
 
 						if (pages[pageIndex] === 'backCover' && currentLeft >= 300) 

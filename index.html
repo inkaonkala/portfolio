@@ -136,13 +136,44 @@
 
 		.explain-box.blue {
 			width: 80px;
-			font-size: 12px;
+			font-size: 13px;
 			line-height: 1.2;
 			padding: 6px;
 			background: #6666cc;
 			border-color: #3333aa;
 			color: white;
 		}
+
+		.game-link {
+			position: absolute;
+			top: 480px;
+			left: 60px;
+			background: #fff8dc;
+			border: 3px solid #ff5555;
+			padding: 10px 20px;
+			font-family: monospace;
+			font-size: 16px;
+			text-decoration: none;
+			color: #ff0000;
+			border-radius: 10px;
+			box-shadow: 0 0 10px #ffaaaa;
+			animation: popPulse 1.5s infinite ease-in-out;
+			transition: transform 0.2s, background 0.2s;
+			z-index: 10;
+		}
+
+		.game-link:hover {
+			transform: scale(1.1);
+			background: #ffeaea;
+			color: #d10000;
+			box-shadow: 0 0 20px #ff6666;
+		}
+
+		@keyframes popPulse {
+			0%, 100% { transform: scale(1); }
+			50% { transform: scale(1.08); }
+		}
+
 
 	</style>
 </head>
@@ -296,6 +327,46 @@
 		
 	</div>
 
+	<!-- TOWER GAME PAGE -->
+	<div id="tower_page" class="page double">
+		<div class="page-bg left"></div>
+		<div class="page-bg right"></div>
+
+		<h1 class="page-title">Tower of Infinite Stories</h1>
+
+		<!-- YouTube video -->
+		<div class="video-box" style="top: 140px; left: 40px; width: 400px; height: 300px;">
+			<iframe src="https://www.youtube.com/shorts/embed/qqNZGjxKOCg" frameborder="0" allowfullscreen></iframe>
+		</div>
+
+		<!-- Popping Game Link Button -->
+		<a href="https://inkaonkala.itch.io/buildatower" target="_blank" class="game-link">🎮 Play the Game</a>
+
+		<!-- Explanation box -->
+		<div class="explain-box" style="top: 80px; left: 480px; width: 380px; height: 400px; background: #fdf8e4; border-color: black; color: black; font-size: 14px;">
+			
+			<b>
+				Looking for a cozy, casual game to play now and then?<br>
+				A place to relax?<br>
+				A peek into your neighbors' lives?<br>
+				Intriguing little stories that will make you smile?<br><br>
+				
+				*Tower of Infinite Stories* is a game where you decorate apartments for an endless stream of new residents moving in. But that's not all — you also get to follow their lives as they unfold and intertwine.<br><br>
+				
+				Choose your favorite characters and watch how the tower changes them — and how they change the tower.<br><br>
+				
+				The game is built in Godot. It features AI-generated characters and stories, so every experience is unique — and never-ending!<br><br>
+				
+				This demo was created during the Supercell AI Hackathon.<br>
+				Currently in development… and it's going to be a fully downloadable app! Coming soon!
+				</b>
+				
+		</div>
+</div>
+
+
+
+
 	<!-- BACK COVER-->
 	<div id="backCover" class="page" style="background-image: url('assets/back.png');">
 		<img src="assets/spaceman.gif" alt="Sticker" style="position: absolute; top: 60px; left: 250px; width: 100px;" />
@@ -310,7 +381,7 @@
 		let currentLeft = 35;
 		let walkTimeout;
 	
-		const pages = ['page1', 'page2', 'game1_page', 'game2_page', 'game3_page', 'backCover'];
+		const pages = ['page1', 'page2', 'game1_page', 'game2_page', 'game3_page', 'tower_page', 'backCover'];
 		let pageIndex = 0;
 	
 		const character = document.getElementById('character');

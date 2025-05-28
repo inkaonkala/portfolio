@@ -207,6 +207,11 @@
 	<div id="pageContainer" style="position: relative; display: flex; justify-content: center;">
 		<img id="characterNavi" src="assets/inkaHello.gif" class="character" style="display: none; top: 565px; left: 35px; z-index: 10;" />
 	
+	<div id="mobileControls" style="position: absolute; right: 10px; bottom: 30px; display: flex; flex-direction: column; gap: 10px; z-index: 20;">
+		<img src="assets/soso.png" id="arrowRight" style="width: 40px; height: 40px; cursor: pointer;" alt="Right" />
+		<img src="assets/soso.png" id="arrowLeft" style="width: 40px; height: 40px; transform: scaleX(-1); cursor: pointer;" alt="Left" />
+	</div>
+		
 	
 	<!-- BANANA PAGE -->
 		<div id="page2" class="page double">
@@ -374,9 +379,6 @@
 	</div>
 
 
-
-
-
 	<script>
 		let currentLeft = 35;
 		let walkTimeout;
@@ -481,6 +483,23 @@
 			const activePage = document.querySelector('.page.active');
 			return activePage ? activePage.offsetWidth : 300;
 		}
+
+		document.getElementById("arrowLeft").addEventListener("click", () => {
+			simulateKeyPress("ArrowLeft");
+		});
+
+		document.getElementById("arrowRight").addEventListener("click", () => {
+			simulateKeyPress("ArrowRight");
+		});
+
+		function simulateKeyPress(key) {
+			const event = new KeyboardEvent("keydown", {
+				key: key,
+				bubbles: true
+			});
+			document.dispatchEvent(event);
+		}
+
 	
 		function showPage(index) 
 		{

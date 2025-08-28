@@ -184,11 +184,21 @@
 		}
 		
 
+		/*sisallysluettelo TableOfContent*/
+
+		/* TOC styles */
+		.toc-wrap { position: absolute; inset: 0; padding: 30px; box-sizing: border-box; z-index: 1; }
+		.toc-title { font-family: monospace; font-size: 28px; margin: 0 0 10px; }
+		.toc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+		.toc-item { background: #fff8e6; border: 3px solid #000; padding: 12px; font-family: monospace; cursor: pointer; box-shadow: 4px 4px 0 #000; }
+		.toc-item:hover { transform: translate(-1px,-1px); }
+
 
 	</style>
 </head>
 <body>
 
+  
 	<!-- COVER PAGE -->
 	<div id="page1" class="page active" style="background-image: url('assets/kansi.png');">
 		<img id="character" src="assets/inkaHello.gif" class="character" onclick="jumpOut()" />
@@ -222,7 +232,30 @@
 		<img src="assets/soso.png" id="arrowLeft" style="width: 40px; height: 40px; transform: scaleX(-1); cursor: pointer;" alt="Left" />
 	</div>
 		
-	
+
+	<!-- TABLE OF CONTENTS (first spread) -->
+	<div id="toc" class="page double">
+		<div class="page-bg left" style="background-image: url('assets/testisivu.png');"> </div>
+		<div class="page-bg right" style="background-image: url('assets/testisivu.png');"> </div>
+			
+		<div class="toc-wrap">
+		  <h1 class="toc-title">Table of Contents</h1>
+		  <div class="toc-grid">
+			<div class="toc-item" onclick="goTo('page1')">Cover</div>
+			<div class="toc-item" onclick="goTo('page2')">Hive projects</div>
+			<div class="toc-item" onclick="goTo('game1_page')">My first games</div>
+			<div class="toc-item" onclick="goTo('game2_page')">Game Jams</div>
+			<div class="toc-item" onclick="goTo('game3_page')">Play some Pong</div>
+			<div class="toc-item" onclick="goTo('tower_page')">Tower of Infinite Stories</div>
+			<div class="toc-item" onclick="goTo('kakka_page')">Kakka juttu</div>
+			<div class="toc-item" onclick="goTo('extra1_page')">Extra spread 1</div>
+			<div class="toc-item" onclick="goTo('extra2_page')">Extra spread 2</div>
+			<div class="toc-item" onclick="goTo('backCover')">Back cover</div>
+		  </div>
+		</div>
+	  </div>	
+
+
 	<!-- BANANA PAGE -->
 		<div id="page2" class="page double">
 			<div class="page-bg left"></div>
@@ -391,6 +424,7 @@
 		</div>
 
 	</div>
+
 	<!-- Kakka peli -->
 	<div id="kakka_page" class="page double">
 		<div class="page-bg left"></div>
@@ -423,7 +457,6 @@
 
 
 
-
 	<!-- BACK COVER-->
 	<div id="backCover" class="page" style="background-image: url('assets/back.png');">
 		<img src="assets/spaceman.gif" alt="Sticker" style="position: absolute; top: 60px; left: 250px; width: 100px;" />
@@ -431,11 +464,32 @@
 	</div>
 
 
+<!--
+	PAGES PAGES PAGES PAGES PAGES PAGES PAGES !!!!!!!! PAGES
+	 THE SCRIPT IS HERE FOR YOU TO FIND IT 
+	 HAVE FUN!
+	
+	/ -->
+
 	<script>
+
+
 		let currentLeft = 35;
 		let walkTimeout;
 	
-		const pages = ['page1', 'page2', 'game1_page', 'game2_page', 'game3_page', 'tower_page', 'backCover'];
+		const pages = [
+			'page1',
+			'toc',
+			'page2', 
+			'game1_page', 
+			'game2_page', 
+			'game3_page', 
+			'tower_page', 
+			'backCover',
+			'kakka_page',
+			//'happyAnimals',
+			'backCover'
+		];
 		let pageIndex = 0;
 	
 		const character = document.getElementById('character');
@@ -637,6 +691,33 @@
 			}
 			loop();
 		}
+
+
+		function goTo(id) {
+			const idx = pages.indexOf(id)
+			if (idx == -1)
+				return ;
+			pageIndex = idx;
+			showPage(pageIndex);
+		}
+
+//		function goTo(id) {
+//  const idx = pages.indexOf(id);
+//  if (idx === -1) return;
+//  pageIndex = idx;
+//  showPage(pageIndex);
+//  // show the walking character on non-cover pages if you want:
+//  const charNavi = document.getElementById('characterNavi');
+//  if (id !== 'page1') {
+//    charNavi.style.display = 'block';
+//    charNavi.style.left = '35px';
+//    currentLeft = 35;
+//  } else {
+//    charNavi.style.display = 'none';
+//  }
+//  if (id === 'page2') startTypingLoop();
+//}
+
 	</script>
 
 </body>
